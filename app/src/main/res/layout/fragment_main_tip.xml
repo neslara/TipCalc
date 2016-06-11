@@ -10,54 +10,54 @@
     tools:showIn="@layout/activity_main">
 
     <EditText
-        android:id="@+id/edtTxt_Total"
+        android:id="@+id/inputBill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:ems="10"
-        android:inputType="number"
-        android:hint="@string/total"/>
+        android:hint="@string/total"
+        android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bttnCalculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edtTxt_Total"
-        android:layout_toEndOf="@+id/edtTxt_Total"
-        android:layout_toRightOf="@+id/edtTxt_Total"
+        android:layout_alignBottom="@+id/inputBill"
+        android:layout_toEndOf="@+id/inputBill"
+        android:layout_toRightOf="@+id/inputBill"
         android:text="@string/calculate" />
 
     <EditText
-        android:id="@+id/edtTxt_Propina"
+        android:id="@+id/inputPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/edtTxt_Total"
+        android:layout_below="@+id/inputBill"
         android:ems="10"
-        android:inputType="number"
-        android:hint="@string/percentage_of_tip"/>
+        android:hint="@string/percentage_of_tip"
+        android:inputType="numberDecimal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
-        android:layout_toEndOf="@+id/edtTxt_Propina"
-        android:layout_toRightOf="@+id/edtTxt_Propina"
+        android:layout_below="@+id/bttnCalculate"
+        android:layout_toEndOf="@+id/inputPercentage"
+        android:layout_toRightOf="@+id/inputPercentage"
         android:orientation="horizontal"
         android:weightSum="2">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/bttnIncrease"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/plus_sign" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/bttnDecrease"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,9 +65,26 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bttnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtTxt_Propina"
+        android:layout_below="@+id/inputPercentage"
         android:text="@string/delete_recently" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/bttnClear"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:visibility="gone" />
+
 </RelativeLayout>
