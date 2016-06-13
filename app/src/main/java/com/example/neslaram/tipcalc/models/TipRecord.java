@@ -3,6 +3,9 @@ package com.example.neslaram.tipcalc.models;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Created by neslaram on 12/06/16.
+ */
 public class TipRecord {
     private double bill;
     private int tipPercentage;
