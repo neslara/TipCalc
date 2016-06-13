@@ -18,8 +18,6 @@ import com.example.neslaram.tipcalc.interfaces.OnItemClickListener;
 import com.example.neslaram.tipcalc.interfaces.TipHistoryListListener;
 import com.example.neslaram.tipcalc.models.TipRecord;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
