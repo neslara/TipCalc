@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,6 +28,10 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+
+    private static final int TIP_STEP_CHANGE = 1;
     private static final int DEFAULT_TIP_PERCENTAGE = 10;
     private TipHistoryListListener fragmentListener;
 
@@ -34,9 +39,16 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.inputBill)
     EditText inputBill;
+    @BindView(R.id.bttnCalculate)
+    Button bttnCalculate;
     @BindView(R.id.inputPercentage)
     EditText inputPercentage;
-
+    @BindView(R.id.bttnDecrease)
+    Button inputDecrease;
+    @BindView(R.id.bttnIncrease)
+    Button inputIncrease;
+    @BindView(R.id.bttnClear)
+    Button bttnClear;
     @BindView(R.id.txtVwTip)
     TextView txtTip;
 
