@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     EditText inputBill;
     @BindView(R.id.inputPercentage)
     EditText inputPercentage;
-
     @BindView(R.id.txtVwTip)
     TextView txtTip;
 
