@@ -1,4 +1,4 @@
-package com.example.neslaram.tipcalc;
+package com.example.neslaram.tipcalc.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,8 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.neslaram.tipcalc.R;
 import com.example.neslaram.tipcalc.application.TipCalcApplication;
+import com.example.neslaram.tipcalc.fragments.TipHistoryFragment;
+import com.example.neslaram.tipcalc.interfaces.TipHistoryListListener;
+import com.example.neslaram.tipcalc.models.TipRecord;
 import com.example.neslaram.tipcalc.utils.Utils;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int TIP_STEP_CHANGE = 1;
     private static final int DEFAULT_TIP_PERCENTAGE = 10;
+    private TipHistoryListListener fragmentListener;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.inputBill)
@@ -51,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        TipHistoryFragment fragment = (TipHistoryFragment) getSupportFragmentManager().findFragmentById(R.id.historyFragment);
+        fragment.setRetainInstance(true);
+        fragmentListener = fragment;
+
 
     }
 
@@ -83,11 +95,26 @@ public class MainActivity extends AppCompatActivity {
         if (!totalBill.isEmpty()) {
             double total = Double.parseDouble(totalBill);
             int tipPercentage = getTipPercentage();
-            double tip = total * (tipPercentage / 100d);
-            String tipStr = String.format(getString(R.string.global_message_tip, tip));
+
+            TipRecord tipRecord= new TipRecord();
+            tipRecord.setBill(total);
+            tipRecord.setTipPercentage(tipPercentage);
+            tipRecord.setTimestamp(new Date().getTime());
+
+
+            String tipStr = String.format(getString(R.string.global_message_tip, tipRecord.getTip()));
+
+            fragmentListener.addToList(tipRecord);
             txtTip.setVisibility(View.VISIBLE);
             txtTip.setText(tipStr);
+
         }
+    }
+
+    @OnClick(R.id.bttnClear)
+    public void clearOnClick(){
+        fragmentListener.clearList();
+
     }
 
     @OnClick(R.id.bttnDecrease)
