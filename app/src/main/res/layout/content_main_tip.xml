@@ -85,7 +85,7 @@
             android:background="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/txtTip"
+            android:id="@+id/txtVwTip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -99,7 +99,7 @@
             android:name="com.example.neslaram.tipcalc.fragments.TipHistoryFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTip"
+            android:layout_below="@+id/txtVwTip"
             tools:layout="@layout/fragment_tip_history" />
 
     </RelativeLayout>

@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.neslaram.tipcalc.R;
+import com.example.neslaram.tipcalc.interfaces.OnItemClickListener;
 import com.example.neslaram.tipcalc.models.TipRecord;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -18,10 +20,18 @@ import butterknife.ButterKnife;
 public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
     private List<TipRecord> dataSet;
     private Context context;
+    private OnItemClickListener clickListener;
 
-    public TipAdapter(Context context, List<TipRecord> dataSet) {
+    public TipAdapter(Context context, OnItemClickListener clickListener) {
+        this.context = context;
+        this.dataSet = new ArrayList<>();
+        this.clickListener= clickListener;
+    }
+
+    public TipAdapter(Context context, List<TipRecord> dataSet, OnItemClickListener clickListener) {
         this.context = context;
         this.dataSet = dataSet;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -36,6 +46,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
 
         String tipStr = String.format(context.getString(R.string.global_message_tip), tipRecord.getTip());
         holder.txtContent.setText(tipStr);
+        holder.setOnClickListener(tipRecord, position, clickListener);
 
     }
 
@@ -61,6 +72,14 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+        public void setOnClickListener(final TipRecord record, final int position, final OnItemClickListener clickListener){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.onItemClick(record, position);
+                }
+            });
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.neslaram.tipcalc.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.neslaram.tipcalc.R;
+import com.example.neslaram.tipcalc.activities.TipDetailActivity;
 import com.example.neslaram.tipcalc.adapters.TipAdapter;
+import com.example.neslaram.tipcalc.interfaces.OnItemClickListener;
 import com.example.neslaram.tipcalc.interfaces.TipHistoryListListener;
 import com.example.neslaram.tipcalc.models.TipRecord;
 
@@ -21,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class TipHistoryFragment extends Fragment implements TipHistoryListListener {
+public class TipHistoryFragment extends Fragment implements TipHistoryListListener, OnItemClickListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -59,7 +62,7 @@ public class TipHistoryFragment extends Fragment implements TipHistoryListListen
 
     private void initAdapter() {
         if (adapter == null) {
-            adapter = new TipAdapter(getActivity().getApplicationContext(), new ArrayList<TipRecord>());
+            adapter = new TipAdapter(getActivity().getApplicationContext(), this);
         }
 
     }
@@ -79,5 +82,14 @@ public class TipHistoryFragment extends Fragment implements TipHistoryListListen
     public void clearList() {
         adapter.clearItems();
 
+    }
+
+    @Override
+    public void onItemClick(TipRecord record, int position) {
+        Intent intent= new Intent(getActivity(), TipDetailActivity.class);
+        intent.putExtra(TipDetailActivity.TIP_KEY, record.getTip());
+        intent.putExtra(TipDetailActivity.DATE_KEY, record.getDateFormatted());
+        intent.putExtra(TipDetailActivity.BILL_TOTAL_KEY, record.getBill());
+        startActivity(intent);
     }
 }

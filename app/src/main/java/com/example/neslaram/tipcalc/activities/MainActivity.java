@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     Button inputIncrease;
     @BindView(R.id.bttnClear)
     Button bttnClear;
-    @BindView(R.id.txtTip)
+    @BindView(R.id.txtVwTip)
     TextView txtTip;
 
 
