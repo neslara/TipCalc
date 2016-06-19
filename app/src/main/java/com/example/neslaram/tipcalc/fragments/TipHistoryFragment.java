@@ -74,6 +74,7 @@ public class TipHistoryFragment extends Fragment implements TipHistoryListListen
     @Override
     public void addToList(TipRecord record) {
         adapter.addItem(record);
+        recyclerView.scrollToPosition(0);
     }
 
     @Override
